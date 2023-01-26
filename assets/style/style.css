@@ -9,7 +9,7 @@
 
 
 header {
-  
+
   height: auto;
 }
 
@@ -35,6 +35,9 @@ main {
   min-height: 60vh;
 }
 
+.main_details{
+  min-height: 83.6vh;
+}
 
 .cont_search{
   width: 100%;
