@@ -12,15 +12,19 @@ function crearCards( lista ){
     for (let elemento of lista.events) {
         template +=
         `<div class="card" style="width: 18rem;">
-            <img src="${elemento.image}">
-            <div class="card-body">
+            <img src="${elemento.image}"class="card-img-top" alt="img-cars">
+            <div class="card-body" id="card-inf">
             <h5 class="card-title">${elemento.name}</h5>
             <p class="card-text">${elemento.description}</p>
-            <a href="./assets/html/details.html" class="btn btn-primary color_btn" >Details</a>
+            <div class="cont-btn-precio">
+              <p class="card-text">Price: $ ${elemento.price}</p>
+              <a href="./assets/html/details.html" class="btn btn-primary color_btn ms-auto" >Details</a>
+            </div>
             </div>
         </div>`
         
     }
+
     divcont.innerHTML = template
     
 }
@@ -28,36 +32,3 @@ function crearCards( lista ){
 crearCards( lista )
 
 
-
-//filtrar:
-
-//*upcoming
-
-// function cardUpcoming(lista){
-
-    
-//     let añoActual = lista.currentDate.slice(0,-6)
-//     //console.log(añoActual)
-
-//     for (let elemento of lista.events) {
-//         let año = elemento.date.slice(0,-6);
-//         //console.log(año)
-        
-//         let up = []
-
-//         if (año === añoActual) {
-            
-//             up.push(año)
-            
-//         }
-
-//         //console.table(up)
-
-//     }
-
-
-// }
-
-// cardUpcoming(lista)
-
-//insertar

@@ -111,6 +111,28 @@ main {
   gap: 1rem;
 }
 
+#card-inf{
+
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+.cont-btn-precio{
+
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  
+
+}
+.cont-btn-precio>p{
+    width: 50%;   
+    text-align: center;
+}
+
 .cont_form{
  
   display: flex;
