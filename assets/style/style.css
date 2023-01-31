@@ -24,7 +24,7 @@ header {
 }
 
 #img_logo {
-  width: 6rem;
+  width: 7rem;
   height: 2rem;
 }
 .img_carrucel{
@@ -222,7 +222,7 @@ footer {
   align-items: center;
 }
 
-@media (min-width:320px) and (max-width:426px) {
+@media (min-width:320px) and (max-width:767px) {
 
   .cont_search{
     flex-direction: column;
@@ -273,7 +273,7 @@ footer {
   
 }
 
-@media(min-width:427px) and (max-width:1024px){
+@media(min-width:768px) and (max-width:1023px){
 
   .cont_search{
     flex-direction: column;
@@ -291,28 +291,25 @@ footer {
     
     width: 100%;
   }
-
+  
   .cont_details{
 
+    width: 40rem;
+    height: 22rem;
     
-    margin: 2rem;
-    padding: 1rem;
-    width: 18rem;
-    height: auto;
-    gap: 1rem;
-    flex-direction: column;
   
   }
 
   .img_details{
    
-    width: 16rem;
+    width: 18rem;
   }
   
   .inf_details{
     width: 16rem;
     
   }
+  
 
   .form_contact{
     width: 70%;
