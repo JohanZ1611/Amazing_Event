@@ -34,6 +34,15 @@ header {
     object-position:center;
 
 }
+.tam_text_carrusel>a{
+  color: white;
+  text-decoration: none;
+}
+
+.tam_text_carrusel>a>h5{
+  font-size: 60px;
+}
+
 .div_a_nav{
 
   gap: 1rem;
