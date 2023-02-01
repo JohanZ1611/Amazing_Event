@@ -63,25 +63,25 @@ function createLists(list) {
         img2 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="#"><h5>${listaNameHtml[1]}</h5></a>
+                <a href="./assets/html/upcomigEvents.html"><h5>${listaNameHtml[1]}</h5></a>
         </div>`
       } else if (!img3 && !img4 && !img5) {
         img3 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="#"><h5>${listaNameHtml[2]}</h5></a>
+                <a href="./assets/html/pastEvents.html"><h5>${listaNameHtml[2]}</h5></a>
         </div>`
       } else if (!img4 && !img5) {
         img4 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="#"><h5>${listaNameHtml[3]}</h5></a>
+                <a href="./assets/html/contact.html"><h5>${listaNameHtml[3]}</h5></a>
         </div>`
       } else if (!img5) {
         img5 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="#"><h5>${listaNameHtml[4]}</h5></a>
+                <a href="./assets/html/stats.html"><h5>${listaNameHtml[4]}</h5></a>
         </div>`
       }
     }
