@@ -41,10 +41,13 @@ header {
 
 .tam_text_carrusel>a>h5{
   font-size: 60px;
+  text-shadow: 2px  1px 1px black,
+               1px  2px 1px black,
+               0px  1px 1px black,
+               1px  0px 1px black;
 }
 
 .div_a_nav{
-
   gap: 1rem;
 
 }
@@ -55,6 +58,7 @@ header {
   border: 2px solid #a9a4a0 ;
   color: white;
   border-radius: 8px;
+  text-align: center;
 
 }
 
@@ -65,7 +69,6 @@ header {
   border-radius: 8px;
 
 }
-
 
 /* -------------------- */
 
@@ -78,11 +81,21 @@ main {
 }
 
 .main_details{
-  min-height: 85vh;
+  min-height: 86vh;
 }
 
 .main_contact{
   min-height: 67.5vh;
+}
+
+.tam_check{
+ 
+  width: 11.2rem;
+  
+}
+
+.tam_check>input{
+  border:2px solid #a9a4a0;
 }
 
 .cont_search{
@@ -98,6 +111,7 @@ main {
 .search{
 
   width: 35%;
+  
 
 }
 
@@ -108,6 +122,7 @@ main {
 
 .check{
   width: 65%;
+  
 }
 
 .cont_cards{
@@ -118,6 +133,10 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+}
+
+.tam_img_card{
+  height: 10rem;
 }
 
 #card-inf{
@@ -187,7 +206,7 @@ main {
   border: 2px solid #c8c2be ;
   border-radius: 8px;
   width: 56rem;
-  height: 29rem;
+  height: 30rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -300,7 +319,9 @@ footer {
     gap: 1rem;
   }
 
-  
+  .redes{
+    gap: .8rem;
+  }
   
 }
 

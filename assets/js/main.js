@@ -12,7 +12,7 @@ function crearCards( lista ){
     for (let elemento of lista.events) {
         template +=
         `<div class="card" style="width: 18rem;">
-            <img src="${elemento.image}"class="card-img-top" alt="img-cars">
+            <img src="${elemento.image}"class="card-img-top tam_img_card" alt="img-cars">
             <div class="card-body" id="card-inf">
             <h5 class="card-title">${elemento.name}</h5>
             <p class="card-text">${elemento.description}</p>
@@ -25,8 +25,7 @@ function crearCards( lista ){
         
         
     }
-
-    divcont.innerHTML = template
+    divcont.innerHTML = template  
     
 }
 

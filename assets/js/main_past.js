@@ -18,7 +18,7 @@ function cardPast(lista){
         if (event < fechaActual){
             template +=
         `<div class="card" style="width: 18rem;">
-                <img src="${element.image}"class="card-img-top" alt="img-cars">
+                <img src="${element.image}"class="card-img-top tam_img_card" alt="img-cars">
                 <div class="card-body" id="card-inf">
                     <h5 class="card-title">${element.name}</h5>
                     <p class="card-text">${element.description}</p>
