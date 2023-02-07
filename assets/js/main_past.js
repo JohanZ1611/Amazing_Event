@@ -24,7 +24,7 @@ function cardPast(lista){
                     <p class="card-text">${element.description}</p>
                     <div class="cont-btn-precio">
                         <p class="card-text">Price: $ ${element.price}</p>
-                        <a href="./assets/html/details.html" class="btn btn-primary color_btn ms-auto" >Details</a>
+                        <a href="./details.html" class="btn btn-primary color_btn ms-auto" >Details</a>
                     </div>
                 </div>
             </div>`

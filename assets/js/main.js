@@ -1,15 +1,23 @@
 //*importo la data
 
-let lista = data
+const lista = data
+const datos = data.events
+
+
+//* variables
+const form = document.getElementById("formulario")
+const  divcont = document.getElementById("contenedor-cards")
+const checks = document.getElementById("checks")
+
+
+
 
 //*crear cards
 
-function crearCards( lista ){
+function crearCards(events){
+  let template = ''
 
-    const  divcont = document.getElementById("contenedor-cards") 
-    let template = ''
-
-    for (let elemento of lista.events) {
+    for (let elemento of events) {
         template +=
         `<div class="card" style="width: 18rem;">
             <img src="${elemento.image}"class="card-img-top tam_img_card" alt="img-cars">
@@ -26,14 +34,63 @@ function crearCards( lista ){
         
     }
     divcont.innerHTML = template  
-    
 }
 
-crearCards( lista )
+
+//*search
+
+form.addEventListener("keyup",(event)=>{
+  event.preventDefault()
+
+  const searchValue = form[0].value.toLowerCase()
+  const results = searchList(searchValue,datos)
+
+  crearCards(results)//*imprime las cards del searh
+
+  //*union entre search y checks
+
+  const Checked = document.querySelector('input[type="checkbox"]:checked')
+  const filtrados = filtrarCardChecks(results,Checked.value)
+  
+  crearCards(filtrados)//*imprime las card del search y checks
+  
+})
+
+function searchList(searchValue,list){
+  return list.filter((event) => event.name.toLowerCase().includes(searchValue))  
+}
+
+
+//*checks
+
+checks.addEventListener("change",(event)=>{
+  
+  if(event.target.checked){
+    const filtrados = filtrarCardChecks(datos,event.target.value)
+    
+
+    //const filtradoAlmacenado = filtrarCardChecks(filtrados,event.target.value)
+
+   
+
+    //const searchValue = form[0].value.toLowerCase()
+    //const filtradoSearch = searchList(searchValue,filtrados)
+
+    return crearCards(filtrados)
+
+  }else if(!event.target.checked){
+    return crearCards(datos)
+  }
+ 
+})
+
+function filtrarCardChecks(cards,value){
+  return cards.filter(card => card.category.toLowerCase() === value.toLowerCase())
+}
+
 
 
 //*fuction para el carrusel
-
 
 function createLists(list) {
     const  divimg1 = document.getElementById("contenedor_img1");
@@ -94,3 +151,7 @@ function createLists(list) {
   }
 
 createLists(lista.events)
+
+
+//*llamado de las funciones
+crearCards(datos)
