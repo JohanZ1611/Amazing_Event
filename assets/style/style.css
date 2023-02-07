@@ -176,11 +176,16 @@ main {
   gap: 1rem;
 }
 
+.decoration-input>div>input{
+  border:2px solid #a9a4a0 !important;
+}
+
 .tam_btn{
   width: 6rem;
 }
 .tam_area{
   resize: none;
+  border:2px solid #a9a4a0 !important;
 }
 
 .cont_table{

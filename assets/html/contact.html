@@ -77,19 +77,20 @@
 
     <main class="d-flex justify-content-center main_contact">
       <div class="cont_form">
-        <form class="p-4 form_contact ">
+        <form class="p-4 form_contact decoration-input">
           <div class="mb-3">
             <label for="name" class="form-label">Name:</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" >
+            <input type="text" class="form-control " id="exampleInputEmail1" placeholder="Example: Johan" >
           </div>
           <div class="mb-3">
             <label for="email_" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="email_" aria-describedby="emailHelp">
+            <input type="email" class="form-control " id="email_" aria-describedby="emailHelp" placeholder="Example@gmail.com">
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
           </div>
-          <div class="form-floating">
-            <textarea class="form-control tam_area" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-            <label for="floatingTextarea2" >message</label>
+          <div class="mb-3">
+            <label for="floatingTextarea2" class="form-label">Message:</label>
+            <textarea class="form-control tam_area" placeholder="Leave a message here." id="floatingTextarea2" style="height: 100px"></textarea>
+            
           </div>
           <button type="submit" class="btn btn-primary tam_btn ms-auto color_btn">Submit</button>
         </form>
