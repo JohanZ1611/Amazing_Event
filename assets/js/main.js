@@ -10,7 +10,7 @@ const  divcont = document.getElementById("contenedor-cards")
 const checks = document.getElementById("checks")
 
 
-
+agregarCheck(datos)
 
 //*crear cards
 
@@ -36,6 +36,29 @@ function crearCards(events){
     divcont.innerHTML = template  
 }
 
+//*crear checks
+
+function agregarCheck(list) {
+  let template = ""
+  let elementCat = [...new Set(list.map(cat => cat.category))]
+  
+  for( let element of elementCat ){
+        
+    template += crearCheck(element)
+  } 
+  checks.innerHTML += template
+  
+}
+
+
+function crearCheck(event){
+  return`
+  <div class="form-check form-check-inline tam_check">
+     <input class="form-check-input " type="checkbox" id="inlineCheckbox2" value="${event}">
+      <label class="form-check-label" for="inlineCheckbox2">${event}</label>
+  </div>`
+  
+}
 
 //*search
 
@@ -44,15 +67,10 @@ form.addEventListener("keyup",(event)=>{
 
   const searchValue = form[0].value.toLowerCase()
   const results = searchList(searchValue,datos)
-
-  crearCards(results)//*imprime las cards del searh
-
-  //*union entre search y checks
-
-  const Checked = document.querySelector('input[type="checkbox"]:checked')
-  const filtrados = filtrarCardChecks(results,Checked.value)
   
-  crearCards(filtrados)//*imprime las card del search y checks
+  const filtrados = filtrarCardChecks(results)
+  
+  crearCards(filtrados)
   
 })
 
@@ -64,28 +82,25 @@ function searchList(searchValue,list){
 //*checks
 
 checks.addEventListener("change",(event)=>{
+ 
+  const searchValue = form[0].value.toLowerCase()
+  const results = searchList(searchValue,datos)
   
-  if(event.target.checked){
-    const filtrados = filtrarCardChecks(datos,event.target.value)
-    
+  const filtrados = filtrarCardChecks(results)
+  
+  crearCards(filtrados)
 
-    //const filtradoAlmacenado = filtrarCardChecks(filtrados,event.target.value)
-
-   
-
-    //const searchValue = form[0].value.toLowerCase()
-    //const filtradoSearch = searchList(searchValue,filtrados)
-
-    return crearCards(filtrados)
-
-  }else if(!event.target.checked){
-    return crearCards(datos)
-  }
  
 })
 
-function filtrarCardChecks(cards,value){
-  return cards.filter(card => card.category.toLowerCase() === value.toLowerCase())
+function filtrarCardChecks(list){
+  const checked = [...document.querySelectorAll('input[type="checkbox"]:checked')].map(input => input.value)
+
+  if(checked.length === 0){
+    return list
+  }
+
+  return list.filter(card => checked.includes(card.category))
 }
 
 
