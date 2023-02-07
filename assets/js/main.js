@@ -10,7 +10,11 @@ const  divcont = document.getElementById("contenedor-cards")
 const checks = document.getElementById("checks")
 
 
+
+//*llamado de las funciones
+crearCards(datos)
 agregarCheck(datos)
+
 
 //*crear cards
 
@@ -168,5 +172,3 @@ function createLists(list) {
 createLists(lista.events)
 
 
-//*llamado de las funciones
-crearCards(datos)
