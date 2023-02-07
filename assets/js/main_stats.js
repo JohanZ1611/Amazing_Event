@@ -12,8 +12,7 @@ function createLists(list) {
     const  divimg4 = document.getElementById("contenedor_img4");
     const  divimg5 = document.getElementById("contenedor_img5");
 
-    const listaNameHtml = ["HOME","UPCOMING EVENTS","PAST EVENTS", "CONTACT", "STATS"]
-
+    
     let img1;
     let img2;
     let img3;
@@ -26,31 +25,26 @@ function createLists(list) {
         img1 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="../../index.html"><h5>${listaNameHtml[0]}</h5></a>
         </div>`
       } else if (!img2 && !img3 && !img4 && !img5) {
         img2 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="./upcomigEvents.html"><h5>${listaNameHtml[1]}</h5></a>
         </div>`
       } else if (!img3 && !img4 && !img5) {
         img3 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="./pastEvents.html"><h5>${listaNameHtml[2]}</h5></a>
         </div>`
       } else if (!img4 && !img5) {
         img4 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="./contact.html"><h5>${listaNameHtml[3]}</h5></a>
         </div>`
       } else if (!img5) {
         img5 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="#"><h5>${listaNameHtml[4]}</h5></a>
         </div>`
       }
     }

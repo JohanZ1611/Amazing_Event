@@ -58,8 +58,8 @@ function agregarCheck(list) {
 function crearCheck(event){
   return`
   <div class="form-check form-check-inline tam_check">
-     <input class="form-check-input " type="checkbox" id="inlineCheckbox2" value="${event}">
-      <label class="form-check-label" for="inlineCheckbox2">${event}</label>
+     <input class="form-check-input " type="checkbox" id="${event}" value="${event}">
+      <label class="form-check-label" for="${event}">${event}</label>
   </div>`
   
 }
@@ -118,7 +118,6 @@ function createLists(list) {
     const  divimg4 = document.getElementById("contenedor_img4");
     const  divimg5 = document.getElementById("contenedor_img5");
 
-    const listaNameHtml = ["HOME","UPCOMING EVENTS","PAST EVENTS", "CONTACT", "STATS"]
 
     let img1;
     let img2;
@@ -132,31 +131,26 @@ function createLists(list) {
         img1 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="#"><h5>${listaNameHtml[0]}</h5></a>
         </div>`
       } else if (!img2 && !img3 && !img4 && !img5) {
         img2 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="./assets/html/upcomigEvents.html"><h5>${listaNameHtml[1]}</h5></a>
         </div>`
       } else if (!img3 && !img4 && !img5) {
         img3 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="./assets/html/pastEvents.html"><h5>${listaNameHtml[2]}</h5></a>
         </div>`
       } else if (!img4 && !img5) {
         img4 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="./assets/html/contact.html"><h5>${listaNameHtml[3]}</h5></a>
-        </div>`
+          </div>`
       } else if (!img5) {
         img5 = 
         `<img src="${obj.image}" class="d-block w-100 img_carrucel" alt="musica">
             <div class="carousel-caption  d-md-block tam_text_carrusel">
-                <a href="./assets/html/stats.html"><h5>${listaNameHtml[4]}</h5></a>
         </div>`
       }
     }
