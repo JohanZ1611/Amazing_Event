@@ -30,7 +30,7 @@ function crearCards(events){
             <p class="card-text">${elemento.description}</p>
             <div class="cont-btn-precio">
               <p class="card-text">Price: $ ${elemento.price}</p>
-              <a href="./assets/html/details.html" class="btn btn-primary color_btn ms-auto" >Details</a>
+              <a href="./assets/html/details.html?id=${elemento._id}" class="btn btn-primary color_btn ms-auto" >Details</a>
             </div>
             </div>
         </div>`
@@ -104,7 +104,7 @@ function filtrarCardChecks(list){
     return list
   }
 
-  return list.filter(card => checked.includes(card.category))
+  return list.filter(event => checked.includes(event.category))
 }
 
 

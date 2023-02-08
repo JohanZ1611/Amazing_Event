@@ -124,6 +124,14 @@ main {
   gap: 1rem;
 }
 
+.card{
+  border: 1px solid #a9a4a0 !important;
+}
+
+.card:hover{
+  transform: scale(1.05, 1.05);
+}
+
 .tam_img_card{
   height: 10rem;
 }
@@ -227,11 +235,22 @@ main {
   text-align: center;
 
 }
+
+
 .color_btn{
-  background-color: #a9a4a0 !important;
-  border: 1px solid #8b8682 !important;
+
+  background-color: #c8c2be  !important;
+  border: 1px solid #a9a4a0 !important;
+
 }
 
+.color_btn:hover{
+
+  background-color: #a9a4a0 !important;
+  border: 1px solid #8b8682 !important;
+  color:  black !important;
+
+}
 
 /* ------------------------ */
 
