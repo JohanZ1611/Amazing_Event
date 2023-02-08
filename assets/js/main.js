@@ -12,32 +12,36 @@ const checks = document.getElementById("checks")
 
 
 //*llamado de las funciones
-crearCards(datos)
+agregarCard(datos)
 agregarCheck(datos)
 
 
 //*crear cards
 
-function crearCards(events){
-  let template = ''
+function agregarCard(list) {
+  let template = ""
+  for(let element of list){
+    template += crearCards(element)
+  }
+  divcont.innerHTML = template
+}
 
-    for (let elemento of events) {
-        template +=
-        `<div class="card" style="width: 18rem;">
+function crearCards(elemento){
+  
+    return `<div class="card" style="width: 18rem;">
             <img src="${elemento.image}"class="card-img-top tam_img_card" alt="img-cars">
             <div class="card-body" id="card-inf">
             <h5 class="card-title">${elemento.name}</h5>
             <p class="card-text">${elemento.description}</p>
             <div class="cont-btn-precio">
-              <p class="card-text">Price: $ ${elemento.price}</p>
+              <p class="card-text"><b>Price:</b> $ ${elemento.price}</p>
               <a href="./assets/html/details.html?id=${elemento._id}" class="btn btn-primary color_btn ms-auto" >Details</a>
             </div>
             </div>
         </div>`
         
         
-    }
-    divcont.innerHTML = template  
+    
 }
 
 //*crear checks
@@ -74,7 +78,7 @@ form.addEventListener("keyup",(event)=>{
   
   const filtrados = filtrarCardChecks(results)
   
-  crearCards(filtrados)
+  agregarCard(filtrados)
   
 })
 
@@ -92,7 +96,7 @@ checks.addEventListener("change",(event)=>{
   
   const filtrados = filtrarCardChecks(results)
   
-  crearCards(filtrados)
+  agregarCard(filtrados)
 
  
 })

@@ -7,15 +7,15 @@ const id = params.get("id")
 
 const events = data.events.find(event => event._id === id)
 
-createDetails(events)
+createDetails(events,divDetail)
 
-function createDetails(event){
+function createDetails(event,container){
   
-    divDetail.innerHTML  =
-        `<img src="${events.image}" class="img_details" alt="Books">
+    container.innerHTML  =
+        `<img src="${event.image}" class="img_details" alt="Books">
         <div class="inf_details" >
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text "><b>Description:</b> <br> Bring your unused school book and bring the one you need.</p>
+        <h5 class="card-title">${event.name}</h5>
+        <p class="card-text "><b>Description:</b> <br> ${event.description}</p>
         <ul>
             <li><b>Date:</b> ${event.date}</li>
             <li><b>Category:</b> ${event.category}</li>

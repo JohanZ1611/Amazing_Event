@@ -12,38 +12,35 @@ let fechaActual = parseInt(lista.currentDate.slice(0,-6))
 
 //*llamado a las funciones
 agregarCheck(datos)
-cardPast(datos)
+agregarCardPast(datos)
 
 
 //*crear card
+function agregarCardPast(list) {
+  let template = ""
+  for(let element of list){
+    let event = parseInt(element.date.slice(0,-6))
+    if (event < fechaActual){
+      template += cardPast(element)
 
-function cardPast(lista){
-  
-    let template = ''
+    }
+  }
+  divcontpast.innerHTML = template
+}
 
-    for(let element of lista){
-        let event = parseInt(element.date.slice(0,-6))
-        //console.log(event)
-        if (event < fechaActual){
-            template +=
-        `<div class="card" style="width: 18rem;">
+function cardPast(element){
+
+    return `<div class="card" style="width: 18rem;">
                 <img src="${element.image}"class="card-img-top tam_img_card" alt="img-cars">
                 <div class="card-body" id="card-inf">
                     <h5 class="card-title">${element.name}</h5>
                     <p class="card-text">${element.description}</p>
                     <div class="cont-btn-precio">
-                        <p class="card-text">Price: $ ${element.price}</p>
-                        <a href="./details.html" class="btn btn-primary color_btn ms-auto" >Details</a>
+                        <p class="card-text"><b>Price:</b>  $ ${element.price}</p>
+                        <a href="./details.html?id=${element._id}" class="btn btn-primary color_btn ms-auto" >Details</a>
                     </div>
                 </div>
             </div>`
-            
-        }
-
-    }
-    divcontpast.innerHTML = template
-    
-
 }
 
 //*crear checks
@@ -80,7 +77,7 @@ form.addEventListener("keyup",(event)=>{
   
   const filtrados = filtrarCardChecks(results)
   
-  cardPast(filtrados)
+  agregarCardPast(filtrados)
   
 })
 
@@ -97,7 +94,7 @@ checks.addEventListener("change",(event)=>{
   
   const filtrados = filtrarCardChecks(results)
   
-  cardPast(filtrados)
+  agregarCardPast(filtrados)
 
  
 })
