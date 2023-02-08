@@ -1,4 +1,3 @@
-
 const divDetail = document.getElementById("container-details")
 
 const params = new URLSearchParams(location.search)
@@ -25,7 +24,6 @@ function createDetails(event,container){
             <li><b>Price:</b> ${event.price}</li>
         </ul>
         </div>`
-          
-          
+
        
 }

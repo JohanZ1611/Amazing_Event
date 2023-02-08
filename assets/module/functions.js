@@ -1,4 +1,3 @@
-
 //*agregar cards main
 
 export function agregarCard(list,contaner) {

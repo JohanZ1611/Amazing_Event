@@ -29,8 +29,20 @@ form.addEventListener("keyup",(event)=>{
   
   const filtrados = filtrarCardChecks(results)
   
-  agregarCard(filtrados,divcont)
+  // if(results.length  && filtrados.length === 0){
+  //   let divcontenedor = document.createElement("div")
+  //   //divcontenedor.className = "carta-info"
+  //   divcontenedor.innerHTML = `<div>
+  //   <h5>no hay card</h5>
+  //   </div>`
+
+  //   divcont.appendChild(divcontenedor)
+    
+  // }else{
+  //   agregarCard(filtrados,divcont)
+  // }
   
+  agregarCard(filtrados,divcont)
 })
 
 //*checks
@@ -41,10 +53,20 @@ checks.addEventListener("change",(event)=>{
   const results = searchList(searchValue,datos)
   
   const filtrados = filtrarCardChecks(results)
-  
-  agregarCard(filtrados,divcont)
 
- 
+  // if(results.length === 0 && filtrados.length === 0){
+  //   let divcontenedor = document.createElement("div")
+  //   //divcontenedor.className = "carta-info"
+  //   divcontenedor.innerHTML = `<div>
+  //   <h5>no hay card</h5>
+  //   </div>`
+
+  //   divcont.appendChild(divcontenedor)
+  // }else{
+  //   agregarCard(filtrados,divcont)
+  // }
+
+  agregarCard(filtrados,divcont)
 })
 
 
