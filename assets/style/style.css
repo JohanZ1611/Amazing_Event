@@ -145,6 +145,21 @@ main {
 
 }
 
+.style-mens{
+
+  width: 40rem;
+  height: 20rem;
+  padding: 2rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.style-mens>img{
+  margin-top: 4rem;
+  width: 5rem;
+  height: 5rem;
+}
 .cont-btn-precio{
 
   display: flex;

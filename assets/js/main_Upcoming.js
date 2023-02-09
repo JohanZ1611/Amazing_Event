@@ -30,7 +30,7 @@ form.addEventListener("keyup",(event)=>{
   
   const filtrados = filtrarCardChecks(results)
   
-  agregarCardUpcoming(filtrados,divcontupcoming)
+  agregarCardUpcoming(filtrados,divcontupcoming,searchValue)
   
 })
 
@@ -45,7 +45,7 @@ checks.addEventListener("change",(event)=>{
   
   const filtrados = filtrarCardChecks(results)
   
-  agregarCardUpcoming(filtrados,divcontupcoming)
+  agregarCardUpcoming(filtrados,divcontupcoming,searchValue)
 
  
 })

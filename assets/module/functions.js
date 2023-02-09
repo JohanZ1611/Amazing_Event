@@ -1,40 +1,78 @@
 //*agregar cards main
 
-export function agregarCard(list,contaner) {
+export function agregarCard(list,contaner,formulario) {
   let template = ""
-  for(let element of list){
-    template += crearCards(element)
+  if(list.length === 0){
+    
+    noEncontradoHome(contaner,formulario)
+  }else{
+    for(let element of list){
+      
+      template += crearCards(element)
+    }
+    contaner.innerHTML = template
   }
-  contaner.innerHTML = template
+}
+
+//*card no encontrada home
+
+export function noEncontradoHome(contaner,formulario){
+  contaner.innerHTML = `<div class="style-mens">
+  <h5>No ha sido posible encontrar nada para "${formulario}".</h5>
+  <h5>Prueba a detallar tu búsqueda.</h5>
+  <img src="./assets/img/cinnamon-svgrepo-com.png" alt="perro">
+  </div>`
+  
+}
+
+//*card no encontrada
+
+export function noEncontrado(contaner,formulario){
+  contaner.innerHTML = `<div class="style-mens">
+  <h5>No ha sido posible encontrar nada para "${formulario}".</h5>
+  <h5>Prueba a detallar tu búsqueda.</h5>
+  <img src="../img/cinnamon-svgrepo-com.png" alt="perro">
+  </div>`
+  
 }
 
 //*agregar cards Upcoming
 
-export function agregarCardUpcoming(list,contaner) {
+export function agregarCardUpcoming(list,contaner,formulario) {
     let fechaActual = parseInt(data.currentDate.slice(0,-6))   
     let template = ""
-  for(let element of list){
-    let event = parseInt(element.date.slice(0,-6))
-    if (event >= fechaActual){
-      template += cardUpAndPast(element)
 
+    if(list.length === 0){
+      noEncontrado(contaner,formulario)
+    }else{
+
+      for(let element of list){
+        let event = parseInt(element.date.slice(0,-6))
+        if (event >= fechaActual){
+          template += cardUpAndPast(element)
+    
+        }
+      }
+      contaner.innerHTML = template
     }
-  }
-  contaner.innerHTML = template
 }
 
 //*agregar card Past
-export function agregarCardPast(list,contaner) {
+export function agregarCardPast(list,contaner,formulario) {
     let fechaActual = parseInt(data.currentDate.slice(0,-6))  
     let template = ""
-    for(let element of list){
-      let event = parseInt(element.date.slice(0,-6))
-      if (event < fechaActual){
-        template += cardUpAndPast(element)
-  
+    if(list.length === 0){
+      noEncontrado(contaner,formulario)
+    }else{
+      for(let element of list){
+        let event = parseInt(element.date.slice(0,-6))
+        if (event < fechaActual){
+          template += cardUpAndPast(element)
+    
+        }
       }
+      contaner.innerHTML = template
     }
-    contaner.innerHTML = template
 }
 
 //*crear cards home,up and past
