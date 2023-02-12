@@ -1,9 +1,16 @@
-import {createCarrusel} from '../module/functions.js'
+import {createCarrusel,getData} from '../module/functions.js'
 
-//*importo la data
+//*import data
 
-let lista = data
+const data = getData();
 
-//*llamado a la funcion
+data.then(data => {
+    
+  //*llamado a la funcion
+  createCarrusel(data.events)
+  
+}).catch ((error) =>
+  console.log("The error is: " + error)
+)
 
-createCarrusel(lista.events)
+

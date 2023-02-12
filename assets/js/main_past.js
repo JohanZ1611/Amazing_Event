@@ -1,22 +1,26 @@
-import {agregarCardPast,agregarCheck,createCarrusel,searchList,filtrarCardChecks} from '../module/functions.js'
-
-
-//*importo la data
-
-let lista = data
-const datos = data.events
-
+import {agregarCardPast,agregarCheck,createCarrusel,searchList,filtrarCardChecks,getData} from '../module/functions.js'
 
 //* variables
 const form = document.getElementById("formulario")
 const  divcontpast = document.getElementById("contenedor-cards-past") 
 const checks = document.getElementById("checks")
-let fechaActual = parseInt(lista.currentDate.slice(0,-6)) 
 
-//*llamado a las funciones
-createCarrusel(lista.events)
-agregarCheck(datos,checks)
-agregarCardPast(datos,divcontpast)
+
+const data = getData();
+
+data.then(data => {
+  
+  let fechaActual = new Date(data.currentDate)   
+  
+  //*llamado de las funciones
+  createCarrusel(data.events)
+  agregarCardPast(data.events,divcontpast,"",fechaActual)
+  agregarCheck(data.events,checks)
+
+}).catch ((error) =>
+  console.log("The error is: " + error)
+)
+
 
 
 //*search
@@ -25,12 +29,15 @@ form.addEventListener("keyup",(event)=>{
   event.preventDefault()
 
   const searchValue = form[0].value.toLowerCase()
-  const results = searchList(searchValue,datos)
-  
-  const filtrados = filtrarCardChecks(results)
-  
-  agregarCardPast(filtrados,divcontpast,searchValue)
-  
+  data.then(data => {
+    let fechaActual = new Date(data.currentDate) 
+
+    const results = searchList(searchValue,data.events)
+    const filtrados = filtrarCardChecks(results)
+
+    gregarCardPast(filtrados,divcontpast,searchValue,fechaActual)
+
+  }).catch ((error) => console.log("The error is: " + error))
 })
 
 
@@ -39,11 +46,15 @@ form.addEventListener("keyup",(event)=>{
 checks.addEventListener("change",(event)=>{
  
   const searchValue = form[0].value.toLowerCase()
-  const results = searchList(searchValue,datos)
-  
-  const filtrados = filtrarCardChecks(results)
-  
-  agregarCardPast(filtrados,divcontpast,searchValue)
+  data.then(data => {
+    let fechaActual = new Date(data.currentDate) 
+
+    const results = searchList(searchValue,data.events)
+    const filtrados = filtrarCardChecks(results)
+
+    gregarCardPast(filtrados,divcontpast,searchValue,fechaActual)
+    
+  }).catch ((error) => console.log("The error is: " + error))
 
  
 })

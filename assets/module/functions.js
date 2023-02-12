@@ -1,3 +1,19 @@
+//*importo la data
+
+let urlApi = 'https://mindhub-xj03.onrender.com/api/amazing'
+
+
+export async function getData() {
+  try {
+    const response = await fetch(urlApi);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log("The error is: " + error);
+  }
+}
+
+
 //*agregar cards main
 
 export function agregarCard(list,contaner,formulario) {
@@ -18,8 +34,8 @@ export function agregarCard(list,contaner,formulario) {
 
 export function noEncontradoHome(contaner,formulario){
   contaner.innerHTML = `<div class="style-mens">
-  <h5>No ha sido posible encontrar nada para "${formulario}".</h5>
-  <h5>Prueba a detallar tu búsqueda.</h5>
+  <h5>It has not been possible to find anything to "${formulario}".</h5>
+  <h5>Try detailing your search.</h5>
   <img src="./assets/img/cinnamon-svgrepo-com.png" alt="perro">
   </div>`
   
@@ -29,8 +45,8 @@ export function noEncontradoHome(contaner,formulario){
 
 export function noEncontrado(contaner,formulario){
   contaner.innerHTML = `<div class="style-mens">
-  <h5>No ha sido posible encontrar nada para "${formulario}".</h5>
-  <h5>Prueba a detallar tu búsqueda.</h5>
+  <h5>It has not been possible to find anything to "${formulario}".</h5>
+  <h5>Try detailing your search.</h5>
   <img src="../img/cinnamon-svgrepo-com.png" alt="perro">
   </div>`
   
@@ -38,8 +54,7 @@ export function noEncontrado(contaner,formulario){
 
 //*agregar cards Upcoming
 
-export function agregarCardUpcoming(list,contaner,formulario) {
-    let fechaActual = parseInt(data.currentDate.slice(0,-6))   
+export function agregarCardUpcoming(list,contaner,formulario,fechaActual) {
     let template = ""
 
     if(list.length === 0){
@@ -47,8 +62,9 @@ export function agregarCardUpcoming(list,contaner,formulario) {
     }else{
 
       for(let element of list){
-        let event = parseInt(element.date.slice(0,-6))
+        let event = new Date(element.date)
         if (event >= fechaActual){
+          
           template += cardUpAndPast(element)
     
         }
@@ -58,14 +74,14 @@ export function agregarCardUpcoming(list,contaner,formulario) {
 }
 
 //*agregar card Past
-export function agregarCardPast(list,contaner,formulario) {
-    let fechaActual = parseInt(data.currentDate.slice(0,-6))  
+export function agregarCardPast(list,contaner,formulario,fechaActual) {
     let template = ""
+
     if(list.length === 0){
       noEncontrado(contaner,formulario)
     }else{
       for(let element of list){
-        let event = parseInt(element.date.slice(0,-6))
+        let event = new Date(element.date)
         if (event < fechaActual){
           template += cardUpAndPast(element)
     
@@ -151,6 +167,25 @@ export function filtrarCardChecks(list){
   }
 
   return list.filter(event => checked.includes(event.category))
+}
+
+//*details
+export function createDetails(event,container){
+  container.innerHTML  =
+      `<img src="${event.image}" class="img_details" alt="Books">
+      <div class="inf_details" >
+      <h5 class="card-title">${event.name}</h5>
+      <p class="card-text "><b>Description:</b> <br> ${event.description}</p>
+      <ul>
+          <li><b>Date:</b> ${event.date}</li>
+          <li><b>Category:</b> ${event.category}</li>
+          <li><b>Place:</b> ${event.place}</li>
+          <li><b>Capacity:</b> ${event.capacity}</li>
+          <li><b>Assistance:</b> ${event.assistance}</li>
+          <li><b>Price:</b> ${event.price}</li>
+      </ul>
+      </div>`
+ 
 }
 
 
