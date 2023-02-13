@@ -18,8 +18,8 @@ export function agregarCard(list,contaner,formulario) {
 
 export function noEncontradoHome(contaner,formulario){
   contaner.innerHTML = `<div class="style-mens">
-  <h5>No ha sido posible encontrar nada para "${formulario}".</h5>
-  <h5>Prueba a detallar tu búsqueda.</h5>
+  <h5>It has not been possible to find anything to "${formulario}".</h5>
+  <h5>Try detailing your search.</h5>
   <img src="./assets/img/cinnamon-svgrepo-com.png" alt="perro">
   </div>`
   
@@ -29,8 +29,8 @@ export function noEncontradoHome(contaner,formulario){
 
 export function noEncontrado(contaner,formulario){
   contaner.innerHTML = `<div class="style-mens">
-  <h5>No ha sido posible encontrar nada para "${formulario}".</h5>
-  <h5>Prueba a detallar tu búsqueda.</h5>
+  <h5>It has not been possible to find anything to "${formulario}".</h5>
+  <h5>Try detailing your search.</h5>
   <img src="../img/cinnamon-svgrepo-com.png" alt="perro">
   </div>`
   
