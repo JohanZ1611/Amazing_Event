@@ -35,7 +35,7 @@ form.addEventListener("keyup",(event)=>{
     const results = searchList(searchValue,data.events)
     const filtrados = filtrarCardChecks(results)
 
-    gregarCardPast(filtrados,divcontpast,searchValue,fechaActual)
+    agregarCardPast(filtrados,divcontpast,searchValue,fechaActual)
 
   }).catch ((error) => console.log("The error is: " + error))
 })
@@ -52,7 +52,7 @@ checks.addEventListener("change",(event)=>{
     const results = searchList(searchValue,data.events)
     const filtrados = filtrarCardChecks(results)
 
-    gregarCardPast(filtrados,divcontpast,searchValue,fechaActual)
+    agregarCardPast(filtrados,divcontpast,searchValue,fechaActual)
     
   }).catch ((error) => console.log("The error is: " + error))
 
