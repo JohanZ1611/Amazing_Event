@@ -201,14 +201,16 @@ main {
 
 .cont_table{
  
-  width: 100%;
+  width: 80%;
   padding: 1rem 2rem 1rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
+table{
+  text-align: center;
+}
 .color_table{
   background-color: #a9a4a0;
   color: white;

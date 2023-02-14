@@ -238,9 +238,9 @@ export function createCarrusel(list) {
     return [img1, img2, img3, img4, img5];
 }
 
-//*agregar cards Upcoming
+//*agregar tabla Upcoming
 
-export function agregarTabla(list,contaner,fechaActual) {
+export function agregarTablaUp(list,contaner,fechaActual) {
   
   let aux = [] 
   for(let element of list){
@@ -249,7 +249,42 @@ export function agregarTabla(list,contaner,fechaActual) {
       aux.push(element)
     }
   }
+  
+  createTableUp(revenuesUp(aux),contaner)
+  
+}
+//*agregar tabla Past
+export function agregarTablaPast(list,contaner,fechaActual) {
+  let aux = []
+  
+  for(let element of list){
+    let event = new Date(element.date)
+    if (event < fechaActual){
+      aux.push(element)
 
+    }
+  }
+  createTablePast(revenuesPast(aux),contaner)
+}
+
+//*agregar tabla events stats past
+
+export function agregarTablaEventsPast(list,contaner,fechaActual) {
+  let aux = []
+  
+  for(let element of list){
+    let event = new Date(element.date)
+    if (event < fechaActual){
+      aux.push(element)
+
+    }
+  }
+  createTableStatsPast(eventStatsPast(aux),contaner)
+}
+
+//* list revenues up
+
+export function revenuesUp(aux) {
   //*me un array de arrays de los precios por categoria
 
   const result = aux.reduce((acc, obj) => {//*acumulador(0),valor actual(cada obj del aux)
@@ -261,7 +296,7 @@ export function agregarTabla(list,contaner,fechaActual) {
     return acc;
   }, {});//*El objeto vacío {} después de la función reduce se utiliza como el valor inicial para el acumulador (acc).
 
-  const finalResult = Object.values(result);//*se convierte el objeto en un array de arrays utilizando Object.values, para que el resultado sea un array de arrays de precios agrupados por categoría.
+  const finalPrice = Object.values(result);//*se convierte el objeto en un array de arrays utilizando Object.values, para que el resultado sea un array de arrays de precios agrupados por categoría.
 
   //*me un array de arrays de los estimados 
 
@@ -275,16 +310,127 @@ export function agregarTabla(list,contaner,fechaActual) {
     return acc;
   }, {});
 
-  const finalResult2 = Object.values(result2);
+  const finalEstimate = Object.values(result2);
 
-  //* operacion matematica 
+  //*me retorna un array de la capacidad
 
-  multiplyArrays(finalResult, finalResult2)
-  //console.log(multiplyArrays(finalResult, finalResult2));
+  const result3 = aux.reduce((acc, obj) => {//*acumulador(0),valor actual(cada obj del aux)
+    
+    const {category, capacity} = obj;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(capacity);
+    return acc;
+  }, {});
 
+  const finalCapacity = Object.values(result3)
+  const nameCategory = Object.keys(result2)
+
+  //* operation
+  let arrayInfo = [multiplyArrays(finalPrice, finalEstimate),nameCategory,porcentArrays(finalEstimate, finalCapacity)]
+  return arrayInfo
+  
 }
 
-function multiplyArrays(arr1, arr2) {
+//* list revenues past
+
+export function revenuesPast(aux) {
+  //*me un array de arrays de los precios por categoria
+
+  const result = aux.reduce((acc, obj) => {//*acumulador(0),valor actual(cada obj del aux)
+    const {category, price} = obj;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(price);
+    return acc;
+  }, {});//*El objeto vacío {} después de la función reduce se utiliza como el valor inicial para el acumulador (acc).
+
+  const finalPrice = Object.values(result);//*se convierte el objeto en un array de arrays utilizando Object.values, para que el resultado sea un array de arrays de precios agrupados por categoría.
+
+  //*me un array de arrays de los estimados 
+
+  const result2 = aux.reduce((acc, obj) => {//*acumulador(0),valor actual(cada obj del aux)
+    
+    const {category, assistance} = obj;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(assistance);
+    return acc;
+  }, {});
+
+  const finalAssistance = Object.values(result2);
+
+  //*me retorna un array de la capacidad
+
+  const result3 = aux.reduce((acc, obj) => {//*acumulador(0),valor actual(cada obj del aux)
+    
+    const {category, capacity} = obj;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(capacity);
+    return acc;
+  }, {});
+
+  
+  const finalCapacity = Object.values(result3)
+  const nameCategory = Object.keys(result2)
+
+
+  //* operation
+
+  let arrayInfo = [multiplyArrays(finalPrice, finalAssistance),nameCategory,porcentArrays(finalAssistance, finalCapacity)]
+
+  return arrayInfo
+  
+}
+
+//* list events stats past
+export function eventStatsPast(aux) {
+  
+  const MayorAsistencia = aux.reduce((eventMax, eventActual) => {
+    const porcentajeAsistenciaMax = eventMax.assistance / eventMax.capacity* 100;
+    const porcentajeAsistenciaActual = eventActual.assistance / eventActual.capacity * 100;
+    
+    return porcentajeAsistenciaActual > porcentajeAsistenciaMax ? eventActual : eventMax;
+  });
+
+  const MenorAsistencia = aux.reduce((eventMin, eventActual) => {
+    const porcentajeAsistenciaMin = eventMin.assistance / eventMin.capacity* 100;
+    const porcentajeAsistenciaActual = eventActual.assistance / eventActual.capacity * 100;
+    
+    return porcentajeAsistenciaActual < porcentajeAsistenciaMin ? eventActual : eventMin;
+  });
+
+  const porcentajeMayorAsistencia = MayorAsistencia.assistance / MayorAsistencia.capacity * 100;
+  const porcentajeMenorAsistencia = MenorAsistencia.assistance / MenorAsistencia.capacity * 100;
+
+  const MayorCapacidad = aux.reduce((eventMax, eventActual) => eventActual.capacity > eventMax.capacity ? eventActual : eventMax);
+
+  const objStatis ={
+    higthest :{
+      name : MayorAsistencia.name,
+      porcent : porcentajeMayorAsistencia.toFixed(2)
+    },
+    lowest :{
+      name : MenorAsistencia.name,
+      porcent : porcentajeMenorAsistencia.toFixed(2)
+    },
+    largeCapacity : {
+      name : MayorCapacidad.name,
+      capacity : MayorCapacidad.capacity
+    }
+  }
+
+  return objStatis
+  
+}
+
+//*operation of revenues
+export function multiplyArrays(arr1, arr2) {
   return arr1
     .map((array1, index) => {
       return array1.map((num, i) => num * arr2[index][i]);
@@ -293,3 +439,62 @@ function multiplyArrays(arr1, arr2) {
     
 }
 
+//*operation of attendance
+export function porcentArrays(arr1, arr2) {
+  let promediosInternos = []
+
+  for (let i = 0; i < arr1.length; i++) {
+    const promedio = (arr1[i].reduce((a, b) => a + b) *100 / arr2[i].reduce((a, b) => a + b)).toFixed(2) ;
+    promediosInternos.push(promedio);
+  }
+    
+  return promediosInternos
+}
+
+//*crear tabla Upcoming
+
+export function createTableUp(array,container){
+
+  let template = ""
+  for (let i = 0; i < array[0].length; i++) {
+    template +=`
+    <tr>
+        <td>${array[1][i]}</td>
+        <td>${array[0][i]}</td>
+        <td>${array[2][i]} %</td>
+    </tr>
+    `
+  }
+  container.innerHTML = template
+}
+
+//*crear tabla Past
+
+export function createTablePast(array,container){
+
+  let template = ""
+  for (let i = 0; i < array[0].length; i++) {
+    template +=`
+    <tr>
+        <td>${array[1][i]}</td>
+        <td>${array[0][i]}</td>
+        <td>${array[2][i]} %</td>
+    </tr>
+    `
+  }
+  container.innerHTML = template
+}
+
+//*crear tabla Events stats Past
+
+export function createTableStatsPast(obj,container){
+ 
+  container.innerHTML +=`
+    <tr>
+        <td>${obj.higthest.name} ${obj.higthest.porcent}%</td>
+        <td>${obj.lowest.name} ${obj.lowest.porcent}%</td>
+        <td>${obj.largeCapacity.name} ${obj.largeCapacity.capacity}</td>
+    </tr>
+    `
+ 
+}
