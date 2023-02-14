@@ -24,10 +24,6 @@ data.then(data => {
 )
 
 
-
-
-
-
 //*search
 
 form.addEventListener("keyup",(event)=>{

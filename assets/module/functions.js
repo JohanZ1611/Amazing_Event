@@ -56,7 +56,6 @@ export function noEncontrado(contaner,formulario){
 
 export function agregarCardUpcoming(list,contaner,formulario,fechaActual) {
     let template = ""
-
     if(list.length === 0){
       noEncontrado(contaner,formulario)
     }else{
@@ -64,7 +63,6 @@ export function agregarCardUpcoming(list,contaner,formulario,fechaActual) {
       for(let element of list){
         let event = new Date(element.date)
         if (event >= fechaActual){
-          
           template += cardUpAndPast(element)
     
         }
@@ -134,10 +132,7 @@ export function agregarCheck(list,contaner) {
   let template = ""
   let elementCat = [...new Set(list.map(cat => cat.category))]
   
-  for( let element of elementCat ){
-        
-    template += crearCheck(element)
-  } 
+  elementCat.forEach(element => template += crearCheck(element))
   contaner.innerHTML += template
   
 }
@@ -243,5 +238,58 @@ export function createCarrusel(list) {
     return [img1, img2, img3, img4, img5];
 }
 
+//*agregar cards Upcoming
 
+export function agregarTabla(list,contaner,fechaActual) {
+  
+  let aux = [] 
+  for(let element of list){
+    let event = new Date(element.date)
+    if (event >= fechaActual){
+      aux.push(element)
+    }
+  }
+
+  //*me un array de arrays de los precios por categoria
+
+  const result = aux.reduce((acc, obj) => {//*acumulador(0),valor actual(cada obj del aux)
+    const {category, price} = obj;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(price);
+    return acc;
+  }, {});//*El objeto vacío {} después de la función reduce se utiliza como el valor inicial para el acumulador (acc).
+
+  const finalResult = Object.values(result);//*se convierte el objeto en un array de arrays utilizando Object.values, para que el resultado sea un array de arrays de precios agrupados por categoría.
+
+  //*me un array de arrays de los estimados 
+
+  const result2 = aux.reduce((acc, obj) => {//*acumulador(0),valor actual(cada obj del aux)
+    
+    const {category, estimate} = obj;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(estimate);
+    return acc;
+  }, {});
+
+  const finalResult2 = Object.values(result2);
+
+  //* operacion matematica 
+
+  multiplyArrays(finalResult, finalResult2)
+  //console.log(multiplyArrays(finalResult, finalResult2));
+
+}
+
+function multiplyArrays(arr1, arr2) {
+  return arr1
+    .map((array1, index) => {
+      return array1.map((num, i) => num * arr2[index][i]);
+    })
+    .map(array => array.reduce((acc, cur) => acc + cur))
+    
+}
 

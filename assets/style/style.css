@@ -207,12 +207,14 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  
 }
 
 .color_table{
   background-color: #a9a4a0;
+  color: white;
+  caption-side: top;
+  padding-left: 1rem;
+  font-weight: bold;
 }
 
 
