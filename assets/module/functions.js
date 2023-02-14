@@ -238,6 +238,8 @@ export function createCarrusel(list) {
     return [img1, img2, img3, img4, img5];
 }
 
+//! agregar tabla
+
 //*agregar tabla Upcoming
 
 export function agregarTablaUp(list,contaner,fechaActual) {
@@ -281,6 +283,8 @@ export function agregarTablaEventsPast(list,contaner,fechaActual) {
   }
   createTableStatsPast(eventStatsPast(aux),contaner)
 }
+
+//! lits stats tabla
 
 //* list revenues up
 
@@ -328,7 +332,7 @@ export function revenuesUp(aux) {
   const nameCategory = Object.keys(result2)
 
   //* operation
-  let arrayInfo = [multiplyArrays(finalPrice, finalEstimate),nameCategory,porcentArrays(finalEstimate, finalCapacity)]
+  let arrayInfo = [nameCategory,multiplyArrays(finalPrice, finalEstimate),porcentArrays(finalEstimate, finalCapacity)]
   return arrayInfo
   
 }
@@ -382,7 +386,7 @@ export function revenuesPast(aux) {
 
   //* operation
 
-  let arrayInfo = [multiplyArrays(finalPrice, finalAssistance),nameCategory,porcentArrays(finalAssistance, finalCapacity)]
+  let arrayInfo = [nameCategory,multiplyArrays(finalPrice, finalAssistance),porcentArrays(finalAssistance, finalCapacity)]
 
   return arrayInfo
   
@@ -405,10 +409,12 @@ export function eventStatsPast(aux) {
     return porcentajeAsistenciaActual < porcentajeAsistenciaMin ? eventActual : eventMin;
   });
 
+  const MayorCapacidad = aux.reduce((eventMax, eventActual) => eventActual.capacity > eventMax.capacity ? eventActual : eventMax);
+
   const porcentajeMayorAsistencia = MayorAsistencia.assistance / MayorAsistencia.capacity * 100;
   const porcentajeMenorAsistencia = MenorAsistencia.assistance / MenorAsistencia.capacity * 100;
 
-  const MayorCapacidad = aux.reduce((eventMax, eventActual) => eventActual.capacity > eventMax.capacity ? eventActual : eventMax);
+  
 
   const objStatis ={
     higthest :{
@@ -428,6 +434,8 @@ export function eventStatsPast(aux) {
   return objStatis
   
 }
+
+//! operation tabal
 
 //*operation of revenues
 export function multiplyArrays(arr1, arr2) {
@@ -451,6 +459,8 @@ export function porcentArrays(arr1, arr2) {
   return promediosInternos
 }
 
+//! create tabal
+
 //*crear tabla Upcoming
 
 export function createTableUp(array,container){
@@ -459,8 +469,8 @@ export function createTableUp(array,container){
   for (let i = 0; i < array[0].length; i++) {
     template +=`
     <tr>
-        <td>${array[1][i]}</td>
         <td>${array[0][i]}</td>
+        <td>${array[1][i]}</td>
         <td>${array[2][i]} %</td>
     </tr>
     `
@@ -476,8 +486,8 @@ export function createTablePast(array,container){
   for (let i = 0; i < array[0].length; i++) {
     template +=`
     <tr>
-        <td>${array[1][i]}</td>
         <td>${array[0][i]}</td>
+        <td>${array[1][i]}</td>
         <td>${array[2][i]} %</td>
     </tr>
     `
@@ -496,5 +506,4 @@ export function createTableStatsPast(obj,container){
         <td>${obj.largeCapacity.name} ${obj.largeCapacity.capacity}</td>
     </tr>
     `
- 
 }
