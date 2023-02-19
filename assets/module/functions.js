@@ -176,7 +176,6 @@ export function createDetails(event,container){
           <li><b>Category:</b> ${event.category}</li>
           <li><b>Place:</b> ${event.place}</li>
           <li><b>Capacity:</b> ${event.capacity}</li>
-          <li><b>Assistance:</b> ${event.assistance}</li>
           <li><b>Price:</b> ${event.price}</li>
       </ul>
       </div>`
@@ -332,6 +331,7 @@ export function revenuesUp(aux) {
   const nameCategory = Object.keys(result2)
 
   //* operation
+  
   let arrayInfo = [nameCategory,multiplyArrays(finalPrice, finalEstimate),porcentArrays(finalEstimate, finalCapacity)]
   return arrayInfo
   
@@ -455,7 +455,7 @@ export function porcentArrays(arr1, arr2) {
     const promedio = (arr1[i].reduce((a, b) => a + b) *100 / arr2[i].reduce((a, b) => a + b)).toFixed(2) ;
     promediosInternos.push(promedio);
   }
-    
+  
   return promediosInternos
 }
 
